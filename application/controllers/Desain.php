@@ -5,6 +5,7 @@ class Desain extends CI_Controller {
     public function __construct(){    
 		parent::__construct();
         $this->load->library("template");
+        $this->load->model("desain_m");
     }
     
 	public function index()
@@ -18,8 +19,8 @@ class Desain extends CI_Controller {
     public function pilih_desain()
 	{
         $data = array(
-            "title_page" => "Home",
-            "ini" => $this->input->post(null, true)
+            "title_page" => "Desain",
+            "desain" => $this->desain_m->GetDesain($this->input->post("proyek"))
         );
 		$this->template->isi("halaman/desain",$data);  
 	}
