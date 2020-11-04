@@ -6,7 +6,7 @@
                 <ol class="breadcrumb m-0">
                     <li class="breadcrumb-item"><a href="<?php echo base_url(); ?>"><i class="mdi mdi-home"></i></a></li>
                     <li class="breadcrumb-item"><a href="javascript: void(0);">Desain</a></li>
-                    <li class="breadcrumb-item active"><a href="javascript: void(0);">RAB</a></li>
+                    <li class="breadcrumb-item active"><a href="javascript: void(0);">Detail</a></li>
                 </ol>
             </div>
         </div>
@@ -34,9 +34,10 @@
 				</div>
 				<div class="tab-pane fade" id="rab" role="tabpanel" aria-labelledby="rab-tab">
 					<!--RAB-->
-					<div class="col-12">
+					<div class="card">
+						<div class="card-header">
 							<!--Link-->
-							<ul class="nav nav-tabs" id="myTabalt" role="tablist">
+							<ul class="nav nav-tabs card-header-tabs" id="myTabalt" role="tablist">
 								<li class="nav-item">
 									<a class="nav-link active" id="hm-tab1" data-toggle="tab" href="#hm"
 										role="tab" aria-controls="hm" aria-expanded="true">Harga Material</a>
@@ -58,7 +59,9 @@
 										role="tab" aria-controls="boq">BOQ</a>
 								</li>
 							</ul>
-							<!--endLink-->
+						</div>
+						<!--endLink-->
+						<div class="card-body">
 							<div class="tab-content text-muted" id="myTabaltContent">
 								<div role="tabpanel" class="tab-pane fade in active show" id="hm" aria-labelledby="HM-tab">
 									<p>Harga Material</p>
@@ -76,7 +79,8 @@
 									BOQ
 								</div>
 							</div>
-							<!--endContent-->
+						</div>
+						<!--endContent-->
 					</div>
 					<!--endRAB-->
 				</div>
