@@ -52,7 +52,7 @@
 											<img src="<?= base_url(); ?>assets/images/ded/<?= $data['foto'];?>" class="thumb-img img-fluid" alt="work-thumbnail">
 										</a>
 										<div class="gal-detail p-3">
-											<h4 class="font-16 mt-0"><?= $data['nama_ded'];?></h4>
+											<p class="text-muted mb-0"><?= $data['nama_ded'];?></p>
 										</div>
 									</div>
 								</div>

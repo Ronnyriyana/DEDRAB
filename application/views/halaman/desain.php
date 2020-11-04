@@ -8,7 +8,7 @@
                     <li class="breadcrumb-item active"><a href="javascript: void(0);">Desain</a></li>
                 </ol>
             </div>
-            <h4 class="page-title">Posyandu</i></h4>
+            <h4 class="page-title"><?= isset ($proyek)?$proyek:'' ?></i></h4>
         </div>
     </div>
 </div>
