@@ -73,13 +73,13 @@
                 <ul class="navigation-menu">
 
                     <li class="has-submenu">
-                        <a href="">
+                        <a href="<?= base_url('');?>index.php/home">
                             <i class="mdi mdi-cash-usd-outline"></i>Harga Upah dan Material
                         </a>
                     </li>
                     
                     <li class="has-submenu">
-                        <a href="">
+                        <a href="<?= base_url('');?>index.php/desain">
                             <i class="mdi mdi-account-supervisor-outline"></i>Analisis HSP
                         </a>
                     </li>
