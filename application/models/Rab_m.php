@@ -20,5 +20,12 @@ class Rab_m extends CI_Model {
         $this->db->where("a.jenis","material");
         $data = $this->db->get("upah_material_terpakai");
 		return $data->result_array();
+    }
+    
+    public function GetDed($id_desain)
+	{
+        $this->db->where("id_desain",$id_desain);
+        $data = $this->db->get("ded");
+		return $data->result_array();
 	}
 }

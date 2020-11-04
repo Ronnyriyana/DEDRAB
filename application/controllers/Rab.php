@@ -21,7 +21,8 @@ class Rab extends CI_Controller {
         $data = array(
             "title_page" => "Harga Upah Material",
             "upah" => $this->rab_m->GetUpah($id_desain),
-            "material" => $this->rab_m->GetMaterial($id_desain)
+            "material" => $this->rab_m->GetMaterial($id_desain),
+            "ded" => $this->rab_m->GetDed($id_desain)
         );
 		$this->template->isi("halaman/rab/hum",$data);  
 	}
