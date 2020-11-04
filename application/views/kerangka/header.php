@@ -45,23 +45,19 @@
             <div class="logo-box">
                 <a href="<?php echo base_url(); ?>" class="logo text-center logo-dark">
                     <span class="logo-lg">
-                        <img src="<?php echo base_url(); ?>assets/images/logo.png" alt="" height="22">
-                        <!-- <span class="logo-lg-text-dark">Uplon</span> -->
+                        <span class="logo-lg-text-light">DED &amp; RAB</span>
                     </span>
                     <span class="logo-sm">
-                        <!-- <span class="logo-lg-text-dark">U</span> -->
-                        <img src="<?php echo base_url(); ?>assets/images/logo-sm.png" alt="" height="24">
+                        <span class="logo-lg-text-light">D&amp;R</span>
                     </span>
                 </a>
 
                 <a href="<?php echo base_url(); ?>" class="logo text-center logo-light">
                     <span class="logo-lg">
-                        <img src="<?php echo base_url(); ?>assets/images/logo-light.png" alt="" height="22">
-                        <!-- <span class="logo-lg-text-dark">Uplon</span> -->
+                        <span class="logo-lg-text-light">DED &amp; RAB</span>
                     </span>
                     <span class="logo-sm">
-                        <!-- <span class="logo-lg-text-dark">U</span> -->
-                        <img src="<?php echo base_url(); ?>assets/images/logo-sm-light.png" alt="" height="24">
+                        <span class="logo-lg-text-light">D&amp;R</span>
                     </span>
                 </a>
             </div>
@@ -78,7 +74,7 @@
 
                     <li class="has-submenu">
                         <a href="">
-                            <i class="mdi mdi-cash-usd-outline"></i>Harga Upah dan Pekerja
+                            <i class="mdi mdi-cash-usd-outline"></i>Harga Upah dan Material
                         </a>
                     </li>
                     

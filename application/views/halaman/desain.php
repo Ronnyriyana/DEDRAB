@@ -8,7 +8,7 @@
                     <li class="breadcrumb-item active"><a href="javascript: void(0);">Desain</a></li>
                 </ol>
             </div>
-            <h4 class="page-title">Desain</i></h4>
+            <h4 class="page-title">Posyandu</i></h4>
         </div>
     </div>
 </div>
@@ -16,7 +16,6 @@
 
 <div class="row">
     <div class="col-sm-12">
-        <h5 class="my-3">Posyandu</h5>
 
         <div class="row">
 			<?php foreach($desain as $data){?>
