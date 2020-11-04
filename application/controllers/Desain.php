@@ -10,10 +10,7 @@ class Desain extends CI_Controller {
     
 	public function index()
 	{
-        $data = array(
-            "title_page" => "Home"
-        );
-		$this->template->isi("halaman/home");  
+        redirect("Home");
     }
     
     public function pilih_desain()
