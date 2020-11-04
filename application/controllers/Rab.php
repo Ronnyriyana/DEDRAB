@@ -1,11 +1,11 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Desain extends CI_Controller {
+class Rab extends CI_Controller {
     public function __construct(){    
 		parent::__construct();
         $this->load->library("template");
-        $this->load->model("desain_m");
+        $this->load->model("rab_m");
     }
     
 	public function index()
@@ -16,13 +16,13 @@ class Desain extends CI_Controller {
 		$this->template->isi("halaman/home");  
     }
     
-    public function pilih_desain()
+    public function hum($id_desain)
 	{
-        if(null == $this->input->post("proyek")){ redirect("home"); }
         $data = array(
-            "title_page" => "Desain",
-            "desain" => $this->desain_m->GetDesain($this->input->post("proyek"))
+            "title_page" => "Harga Upah Material",
+            "upah" => $this->rab_m->GetUpah($id_desain),
+            "material" => $this->rab_m->GetMaterial($id_desain)
         );
-		$this->template->isi("halaman/desain",$data);  
+		$this->template->isi("halaman/rab/hum",$data);  
 	}
 }

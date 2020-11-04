@@ -2,11 +2,6 @@
 <div class="row">
     <div class="col-12">
         <div class="page-title-box">
-            <div class="page-title-right">
-                <ol class="breadcrumb m-0">
-                    <li class="breadcrumb-item active"><a href="<?php echo base_url(); ?>"><i class="mdi mdi-home"></i></a></li>
-                </ol>
-            </div>
             <h4 class="page-title"><i class="mdi mdi-home"></i></h4>
         </div>
     </div>
