@@ -25,7 +25,7 @@
                     <div class="dropdown-menu dropdown-menu-right profile-dropdown ">
                         <!-- item-->
                         <div class="dropdown-header noti-title">
-                            <h6 class="text-overflow text-white m-0">Welcome !</h6>
+                            <h6 class="text-overflow text-white m-0">Selamat Datang !</h6>
                         </div>
                         
                         <div class="dropdown-divider"></div>
@@ -54,10 +54,10 @@
 
                 <a href="<?php echo base_url(); ?>" class="logo text-center logo-light">
                     <span class="logo-lg">
-                        <span class="logo-lg-text-light">DED &amp; RAB</span>
+                        <span class="logo-lg-text-light">DD</span>
                     </span>
                     <span class="logo-sm">
-                        <span class="logo-lg-text-light">D&amp;R</span>
+                        <span class="logo-lg-text-light">DD</span>
                     </span>
                 </a>
             </div>
