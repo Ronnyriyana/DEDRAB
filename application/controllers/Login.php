@@ -13,7 +13,13 @@ class Login extends CI_Controller
     {
         // jika form login disubmit
         if($this->input->post()){
-            if($this->login_m->doLogin()) redirect(site_url('home'));
+            if($this->login_m->doLogin()){
+                if($this->session->userdata('level') == "admin"){
+                    redirect(site_url('dashboard'));
+                }else{
+                    redirect(site_url('home'));
+                }
+            }
         }
 
         // tampilkan halaman login
