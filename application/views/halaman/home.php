@@ -13,7 +13,7 @@
 		<div class="card card-body text-center">
 			<h5 class="card-title">Pilih Proyek</h5>
 			<!--isi-->
-                <form action="<?php echo base_url('index.php/desain/pilih_desain'); ?>" method="POST" enctype="multipart/form-data">
+                <form action="<?php echo base_url('index.php/desain/pilih_desain'); ?>" method="GET" enctype="multipart/form-data">
 				<div>
 					<select onchange="this.form.submit()" name="proyek" class="form-control" data-toggle="select2">
 						<option> - Select - </option>

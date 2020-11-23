@@ -15,11 +15,17 @@
                     </a>
                     <!-- End mobile menu toggle-->
                 </li>
-
+                <?php if($this->session->userdata('user_logged') == null){ ?>
+                <li class="dropdown notification-list">
+                    <a href="#" class="nav-link right-bar-toggle waves-effect waves-light" data-toggle="modal" data-target=".bs-example-modal-center">
+                        <span class="d-none d-sm-inline-block ml-1 font-weight-medium">Login</span>
+                    </a>
+                </li>
+                <?php }else{ ?>
                 <li class="dropdown notification-list">
                     <a class="nav-link dropdown-toggle nav-user mr-0 waves-effect waves-light" data-toggle="dropdown" href="#" role="button" aria-haspopup="false" aria-expanded="false">
                         <img src="<?php echo base_url(); ?>assets/images/users/profile.png" alt="user-image" class="rounded-circle">
-                        <span class="d-none d-sm-inline-block ml-1 font-weight-medium">Bambang S.</span>
+                        <span class="d-none d-sm-inline-block ml-1 font-weight-medium"><?= $this->session->userdata('username'); ?></span>
                         <i class="mdi mdi-chevron-down d-none d-sm-inline-block"></i>
                     </a>
                     <div class="dropdown-menu dropdown-menu-right profile-dropdown ">
@@ -31,14 +37,14 @@
                         <div class="dropdown-divider"></div>
 
                         <!-- item-->
-                        <a href="javascript:void(0);" class="dropdown-item notify-item">
+                        <a href="<?= site_url('login/logout');?>" class="dropdown-item notify-item">
                             <i class="mdi mdi-logout-variant"></i>
                             <span>Logout</span>
                         </a>
 
                     </div>
                 </li>
-
+                <?php } ?>
             </ul>
 
             <!-- LOGO -->
@@ -96,3 +102,38 @@
     <!-- end navbar-custom -->
 
 </header>
+
+
+<div class="modal fade bs-example-modal-center" tabindex="-1" role="dialog" aria-labelledby="myCenterModalLabel" aria-hidden="true" style="display: none;">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="myCenterModalLabel">Login</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+            </div>
+            <div class="modal-body">
+            <form action="<?= base_url('index.php/login');?>" method="POST" class="parsley-examples" data-parsley-validate novalidate>
+                <div class="form-group">
+					<label for="userName">User Name<span class="text-danger">*</span></label>
+					<input type="text" name="username" parsley-trigger="change" required
+							placeholder="Enter user name" class="form-control" id="userName">
+				</div>
+				<div class="form-group">
+					<label for="pass1">Password<span class="text-danger">*</span></label>
+					<input id="pass1" name="password" type="password" placeholder="Password" required
+							class="form-control">
+				</div>
+				<div class="form-group text-right mb-0">
+					<button class="btn btn-primary waves-effect waves-light mr-1" type="submit">
+						Submit
+					</button>
+					<button type="reset" class="btn btn-secondary waves-effect">
+						Cancel
+					</button>
+				</div>
+
+			</form>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->

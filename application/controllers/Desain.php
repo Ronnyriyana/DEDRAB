@@ -15,15 +15,15 @@ class Desain extends CI_Controller {
     
     public function pilih_desain()
 	{
-        if(null == $this->input->post("proyek")){ redirect("home"); }
-        $proyek = $this->desain_m->GetNamaProyek($this->input->post("proyek"));
+        if(null == $this->input->get("proyek")){ redirect("home"); }
+        $proyek = $this->desain_m->GetNamaProyek($this->input->get("proyek"));
         foreach($proyek as $data){
             $nama_proyek = $data['nama_proyek'];
         }
         $data = array(
             "title_page" => "Desain",
             "proyek" => $nama_proyek,
-            "desain" => $this->desain_m->GetDesain($this->input->post("proyek"))
+            "desain" => $this->desain_m->GetDesain($this->input->get("proyek"))
         );
 		$this->template->isi("halaman/desain",$data);  
 	}
