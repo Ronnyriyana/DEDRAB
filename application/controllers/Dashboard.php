@@ -9,6 +9,6 @@ class Dashboard extends CI_Controller {
     
 	public function index()
 	{
-		$this->load->view("dashboard/kerangka/kerangka");  
+		$this->template->B_Show("dashboard/konten/home");  
 	}
 }

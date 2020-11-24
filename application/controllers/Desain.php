@@ -25,6 +25,6 @@ class Desain extends CI_Controller {
             "proyek" => $nama_proyek,
             "desain" => $this->desain_m->GetDesain($this->input->get("proyek"))
         );
-		$this->template->isi("halaman/desain",$data);  
+		$this->template->F_Show("halaman/desain",$data);  
 	}
 }

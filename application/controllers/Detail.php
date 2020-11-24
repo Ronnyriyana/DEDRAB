@@ -13,7 +13,7 @@ class Detail extends CI_Controller {
         $data = array(
             "title_page" => "Home"
         );
-		$this->template->isi("halaman/home");  
+		$this->template->F_Show("halaman/home");  
     }
     
     public function hum($id_desain)
@@ -25,6 +25,6 @@ class Detail extends CI_Controller {
             "ded" => $this->rab_m->GetDed($id_desain),
 			"id_desain" => $id_desain
         );
-		$this->template->isi("halaman/rab/hum",$data);  
+		$this->template->F_Show("halaman/rab/hum",$data);  
 	}
 }

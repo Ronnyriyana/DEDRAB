@@ -14,6 +14,6 @@ class Home extends CI_Controller {
 			"title_page" => "Home",
 			"proyek" => $this->home_m->GetProyek()
 		);
-		$this->template->isi("halaman/home",$data);  
+		$this->template->F_Show("halaman/home",$data);  
 	}
 }
