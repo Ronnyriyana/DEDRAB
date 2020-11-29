@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Rab_m extends CI_Model {
+class Detail_m extends CI_Model {
     public function GetUpah($id_desain)
 	{
         $data = $this->db->get("upah_material_terpakai");
