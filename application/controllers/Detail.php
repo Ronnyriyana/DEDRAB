@@ -21,10 +21,9 @@ class Detail extends CI_Controller {
         $data = array(
             "title_page" => "Harga Upah Material",
             "upah" => $this->detail_m->GetUpah($id_desain),
-            "material" => $this->detail_m->GetMaterial($id_desain),
             "ded" => $this->detail_m->GetDed($id_desain),
 			"id_desain" => $id_desain
         );
-		$this->template->F_Show("halaman/rab/hum",$data);  
+		$this->template->F_Show("halaman/detail/hum",$data);  
 	}
 }
