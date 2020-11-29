@@ -5,7 +5,7 @@ class Detail extends CI_Controller {
     public function __construct(){    
 		parent::__construct();
         $this->load->library("template");
-        $this->load->model("rab_m");
+        $this->load->model("detail_m");
     }
     
 	public function index()
@@ -20,9 +20,9 @@ class Detail extends CI_Controller {
 	{
         $data = array(
             "title_page" => "Harga Upah Material",
-            "upah" => $this->rab_m->GetUpah($id_desain),
-            "material" => $this->rab_m->GetMaterial($id_desain),
-            "ded" => $this->rab_m->GetDed($id_desain),
+            "upah" => $this->detail_m->GetUpah($id_desain),
+            "material" => $this->detail_m->GetMaterial($id_desain),
+            "ded" => $this->detail_m->GetDed($id_desain),
 			"id_desain" => $id_desain
         );
 		$this->template->F_Show("halaman/rab/hum",$data);  
