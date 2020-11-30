@@ -16,11 +16,15 @@ class Detail extends CI_Controller {
 		$this->template->F_Show("halaman/home");  
     }
     
-    public function hum($id_desain)
+    public function hum($id_desain,$kategori_harga = 1)
 	{
+        /*if(isset($kategori_harga) == null){
+            $kategori_harga = 1 ;
+        }*/
         $data = array(
             "title_page" => "Harga Upah Material",
-            "upah" => $this->detail_m->GetUpah($id_desain),
+            "boq_upah" => $this->detail_m->GetBOQ_upah($id_desain,$kategori_harga),
+            "boq_material" => $this->detail_m->GetBOQ_material($id_desain,$kategori_harga),
             "ded" => $this->detail_m->GetDed($id_desain),
 			"id_desain" => $id_desain
         );
