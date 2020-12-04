@@ -6,8 +6,8 @@ class Detail_m extends CI_Model {
 	{
         $this->db->select("a.nama_pekerjaan");
         $this->db->select("(COUNT(DISTINCT c.nama_upah) + COUNT(DISTINCT e.nama_material) + 1) AS rowspan");
-        $this->db->select("GROUP_CONCAT(DISTINCT '<tr><td>', c.nama_upah ,'</td></tr>' SEPARATOR '') AS upah");
-        $this->db->select("GROUP_CONCAT(DISTINCT '<tr><td>', e.nama_material ,'</td></tr>' SEPARATOR '') AS material");
+        $this->db->select("GROUP_CONCAT(DISTINCT '<tr><td>', c.nama_upah ,'</td><td>', c.satuan ,'</td><td>', b.koefisien ,'</tr>' SEPARATOR '') AS upah");
+        $this->db->select("GROUP_CONCAT(DISTINCT '<tr><td>', e.nama_material ,'</td><td>', e.satuan ,'</td><td>', d.koefisien ,'</td></tr>' SEPARATOR '') AS material");
         $this->db->from("pekerjaan a");
         $this->db->join("upah_terpakai b","a.id_pekerjaan = b.id_pekerjaan","LEFT");
         $this->db->join("upah c","b.id_upah = c.id_upah","LEFT");

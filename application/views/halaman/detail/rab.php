@@ -86,13 +86,15 @@
 											<tr>
 												<th>No.</th>
 												<th>Nama Pekerjaan</th>
+												<th>Satuan</th>
+												<th>Koefisien</th>
 											</tr>
 											</thead>
 											<tbody>
                                                 <?php $no=1;foreach($pekerjaan as $data){?>
-                                                <tr> 
+                                                <tr>
                                                     <td rowspan="<?= $data['rowspan']; ?>"><?= $no++; ?></td>
-                                                    <td><b><?= $data['nama_pekerjaan'];?></b></td>
+                                                    <td colspan="3"><b><?= $data['nama_pekerjaan'];?></b></td>
                                                 </tr>
                                                 <?= $data['upah'];?>
                                                 <?= $data['material'];?>
