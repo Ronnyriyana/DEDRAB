@@ -54,8 +54,8 @@
                                 <p class="card-text">
                                     <a href="whatsapp://send?text=<?= site_url('detail/hum/').$data['id_desain']; ?>" type="button" class="btn btn-dark waves-effect waves-light"><i class="mdi mdi-email-outline mr-1"></i> <span>Share</span></a>
                                     <?php if($this->session->userdata('user_logged') !== null){ ?>
-                                    <a href="<?= site_url('detail/hum/').$data['id_desain']; ?>" type="button" class="btn btn-primary btn-rounded waves-effect waves-light" style="width:25%;">DED</a>
-                                    <a href="<?= site_url('detail/hum/').$data['id_desain']; ?>" type="button" class="btn btn-primary btn-rounded waves-effect waves-light" style="width:25%;">RAB</a>
+                                    <a href="<?= site_url('detail/ded/').$data['id_desain']; ?>" type="button" class="btn btn-primary btn-rounded waves-effect waves-light" style="width:25%;">DED</a>
+                                    <a href="<?= site_url('detail/rab/').$data['id_desain']; ?>" type="button" class="btn btn-primary btn-rounded waves-effect waves-light" style="width:25%;">RAB</a>
                                     <?php }else{?>
                                     <a href="#" type="button" data-toggle="modal" data-target=".bs-example-modal-center" class="btn btn-primary btn-rounded waves-effect waves-light" style="width:25%;">DED</a>
                                     <a href="#" type="button" data-toggle="modal" data-target=".bs-example-modal-center" class="btn btn-primary btn-rounded waves-effect waves-light" style="width:25%;">RAB</a>

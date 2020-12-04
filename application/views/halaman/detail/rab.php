@@ -1,5 +1,3 @@
-<!-- Magnific -->
-<link rel="stylesheet" href="<?= base_url(); ?>assets/libs/magnific-popup/magnific-popup.css"/>
 <link rel="stylesheet" href="https://printjs-4de6.kxcdn.com/print.min.css"/>
 <!-- Table datatable css -->
 <link href="<?= base_url(); ?>assets/libs/datatables/dataTables.bootstrap4.min.css" rel="stylesheet" type="text/css" />
@@ -28,12 +26,10 @@
 			<div class="col-5">
 				<ul class="nav nav-pills" id="myTabalt" role="tablist">
 					<li class="nav-item">
-						<a class="nav-link active" id="ded-tab1" data-toggle="tab" href="#ded"
-							role="tab" aria-controls="ded" aria-expanded="true">DED</a>
+						<a class="nav-link" href="<?= site_url('detail/ded/').$id_desain; ?>">DED</a>
 					</li>
 					<li class="nav-item">
-						<a class="nav-link" id="rab-tab1" data-toggle="tab" href="#rab"
-							role="tab" aria-controls="rab">RAB</a>
+						<a class="nav-link active" href="#">RAB</a>
 					</li>
 				</ul>
 			</div>
@@ -47,47 +43,27 @@
 		<div class="row">
 			<div class="col-12">
 				<div class="tab-content text-muted" id="myTabaltContent">
-					<div role="tabpanel" class="tab-pane fade in active show" id="ded" aria-labelledby="ded-tab">
-						<!--DED--------------------------------------------------------------------------------------------------->
-						<div class="port text-center mb-3">
-							<div class="portfolioContainer row">
-							<?php foreach($ded as $data){ ?>
-								<div class="col-md-6 col-xl-4 natural personal">
-									<div class="gallery-box">
-										<a href="<?= base_url(); ?>assets/images/ded/<?= $data['foto'];?>" class="image-popup" title="Screenshot-1">
-											<img src="<?= base_url(); ?>assets/images/ded/<?= $data['foto'];?>" class="thumb-img img-fluid" alt="work-thumbnail">
-										</a>
-										<div class="gal-detail p-3">
-											<p class="text-muted mb-0"><?= $data['nama_ded'];?></p>
-										</div>
-									</div>
-								</div>
-							<?php } ?>
-							</div><!-- end portfoliocontainer-->
-						</div> <!-- End row -->
-						<!--endDED------------------------------------------------------------------------------------------------>
-					</div>
-					<div class="tab-pane fade" id="rab" role="tabpanel" aria-labelledby="rab-tab">
+					<div class="tab-pane fade in active show" id="rab" role="tabpanel" aria-labelledby="rab-tab">
 						<!--RAB--------------------------------------------------------------------------------------------------->
 						<div class="card">
 							<div class="card-header">
 								<!--Link-->
 								<ul class="nav nav-tabs card-header-tabs" id="myTabalt" role="tablist">
 									<li class="nav-item">
+										<a class="nav-link active" id="rabt-tab1" data-toggle="tab" href="#rabt"
+											role="tab" aria-controls="rabt">RAB</a>
+									</li>
+									<li class="nav-item">
 										<a class="nav-link" id="hm-tab1" data-toggle="tab" href="#hm"
-											role="tab" aria-controls="hm">Harga Material</a>
+											role="tab" aria-controls="hm">Harga Upah Material</a>
 									</li>
 									<li class="nav-item">
 										<a class="nav-link" id="ahsp-tab1" data-toggle="tab" href="#ahsp"
 											role="tab" aria-controls="ahsp">AHSP</a>
 									</li>
 									<li class="nav-item">
-										<a class="nav-link" id="hsp-tab1" data-toggle="tab" href="#hsp"
-											role="tab" aria-controls="hsp">HSP</a>
-									</li>
-									<li class="nav-item">
-										<a class="nav-link" id="rekapitulasi-tab1" data-toggle="tab" href="#rekapitulasi"
-											role="tab" aria-controls="rekapitulasi">Rekapitulasi</a>
+										<a class="nav-link" id="volume-tab1" data-toggle="tab" href="#volume"
+											role="tab" aria-controls="volume">Volume Pekerjaan</a>
 									</li>
 									<li class="nav-item">
 										<a class="nav-link" id="boq-tab1" data-toggle="tab" href="#boq"
@@ -98,22 +74,37 @@
 							<!--endLink-->
 							<div class="card-body">
 								<div class="tab-content text-muted" id="myTabaltContent">
-									<div role="tabpanel" class="tab-pane fade in active show" id="hm" aria-labelledby="HM-tab">
-										<img src="<?= base_url();?>assets/images/pdf/RAB-page-001-725x1024.jpg" class="thumb-img img-fluid" alt="work-thumbnail">
-										<img src="<?= base_url();?>assets/images/pdf/RAB-page-002-725x1024.jpg" class="thumb-img img-fluid" alt="work-thumbnail">
-										<img src="<?= base_url();?>assets/images/pdf/RAB-page-003-725x1024.jpg" class="thumb-img img-fluid" alt="work-thumbnail">
+									<div class="tab-pane fade in active show" id="rabt" role="tabpanel" aria-labelledby="rabt-tab">
+										RAB
+									</div>
+									<div class="tab-pane fade" id="hm" role="tabpanel" aria-labelledby="HM-tab">
+										Harga Material
 									</div>
 									<div class="tab-pane fade" id="ahsp" role="tabpanel" aria-labelledby="ahsp-tab">
-										AHSP
+										<table class="table table-bordered">							
+											<thead style="background:silver;">
+											<tr>
+												<th>No.</th>
+												<th>Nama Pekerjaan</th>
+											</tr>
+											</thead>
+											<tbody>
+                                                <?php $no=1;foreach($pekerjaan as $data){?>
+                                                <tr> 
+                                                    <td rowspan="<?= $data['rowspan']; ?>"><?= $no++; ?></td>
+                                                    <td><b><?= $data['nama_pekerjaan'];?></b></td>
+                                                </tr>
+                                                <?= $data['upah'];?>
+                                                <?= $data['material'];?>
+                                                <?php } ?>
+											</tbody>
+										</table>
 									</div>
-									<div class="tab-pane fade" id="hsp" role="tabpanel" aria-labelledby="hsp-tab">
-										HSP
-									</div>
-									<div class="tab-pane fade" id="rekapitulasi" role="tabpanel" aria-labelledby="rekapitulasi-tab">
-										Rekapitulasi
+									<div class="tab-pane fade" id="volume" role="tabpanel" aria-labelledby="volume-tab">
+										Volume
 									</div>
 									<div class="tab-pane fade" id="boq" role="tabpanel" aria-labelledby="boq-tab">
-										<table id="datatable" class="table table-bordered dt-responsive nowrap " style="border-collapse: collapse; border-spacing: 0; width: 100%;">
+										<table id="boq-table" class="table table-bordered dt-responsive nowrap " style="border-collapse: collapse; border-spacing: 0; width: 100%;">
 											<thead style="background:silver;">
 											<tr>
 												<th>No.</th>
@@ -195,11 +186,3 @@
 	  printJS('<?= base_url(); ?>assets/8.RAB-POSYANDU.pdf');
 	}
 </script>
-<!-- isotope filter plugin -->
-<script src="<?= base_url(); ?>assets/libs/isotope/isotope.pkgd.min.js" defer></script>
-
-<!-- Magnific -->
-<script src="<?= base_url(); ?>assets/libs/magnific-popup/jquery.magnific-popup.min.js" defer></script>
-
-<!-- Gallery Init-->
-<script src="<?= base_url(); ?>assets/js/pages/gallery.init.js" defer></script>

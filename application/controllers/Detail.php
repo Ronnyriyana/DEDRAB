@@ -16,18 +16,31 @@ class Detail extends CI_Controller {
 		$this->template->F_Show("halaman/home");  
     }
     
-    public function hum($id_desain,$kategori_harga = 1)
+    public function ded($id_desain,$kategori_harga = 1)
 	{
         /*if(isset($kategori_harga) == null){
             $kategori_harga = 1 ;
         }*/
         $data = array(
-            "title_page" => "Harga Upah Material",
-            "boq_upah" => $this->detail_m->GetBOQ_upah($id_desain,$kategori_harga),
-            "boq_material" => $this->detail_m->GetBOQ_material($id_desain,$kategori_harga),
+            "title_page" => "Detail DED",
             "ded" => $this->detail_m->GetDed($id_desain),
 			"id_desain" => $id_desain
         );
-		$this->template->F_Show("halaman/detail/hum",$data);  
+		$this->template->F_Show("halaman/detail/ded",$data);  
+    }
+    
+    public function rab($id_desain,$kategori_harga = 1)
+	{
+        /*if(isset($kategori_harga) == null){
+            $kategori_harga = 1 ;
+        }*/
+        $data = array(
+            "title_page" => "Detail RAB",
+            "pekerjaan" => $this->detail_m->GetPekerjaan($id_desain),
+            "boq_upah" => $this->detail_m->GetBOQ_upah($id_desain,$kategori_harga),
+            "boq_material" => $this->detail_m->GetBOQ_material($id_desain,$kategori_harga),
+			"id_desain" => $id_desain
+        );
+		$this->template->F_Show("halaman/detail/rab",$data);  
 	}
 }
