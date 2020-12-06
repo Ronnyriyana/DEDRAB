@@ -75,17 +75,98 @@
 							<div class="card-body">
 								<div class="tab-content text-muted" id="myTabaltContent">
 									<div class="tab-pane fade in active show" id="rabt" role="tabpanel" aria-labelledby="rabt-tab">
-										RAB
+										<table class="table table-bordered">							
+											<thead class="thead-light">
+											<tr>
+												<th>Uraian</th>
+												<th>Volume</th>
+												<th>Satuan</th>
+												<th>Harga Satuan</th>
+												<th>Jumlah</th>
+											</tr>
+											</thead>
+											<tbody>
+												<tr>
+													<td colspan="5"><b>Belanja Upah</b></td>
+												</tr>
+												<?php $sum1=0;foreach($rab_upah as $data){ ?>
+												<tr>
+													<td><?= $data['nama_upah'];?></td>
+													<td><?= $data['volume'];?></td>
+													<td><?= $data['satuan'];?></td>
+													<td>Rp. <?= number_format($data['harga'],2,',','.');?></td>
+													<td>Rp. <?= number_format($data['jumlah'],2,',','.');?></td>
+												</tr>
+												<?php $sum1+=$data['jumlah'];} ?>
+												<tr>
+													<td colspan="5"></td>
+												</tr>
+
+
+												<tr>
+													<td colspan="5"><b>Belanja Material</b></td>
+												</tr>
+												<?php $sum2=0;foreach($rab_material as $data){ ?>
+												<tr>
+													<td><?= $data['nama_material'];?></td>
+													<td><?= $data['volume'];?></td>
+													<td><?= $data['satuan'];?></td>
+													<td>Rp. <?= number_format($data['harga'],2,',','.');?></td>
+													<td>Rp. <?= number_format($data['jumlah'],2,',','.');?></td>
+												</tr>
+												<?php $sum2+=$data['jumlah'];} 
+													$jumlah = $sum1+$sum2;
+													$ppn = ($sum1+$sum2)*10/100;
+													$pph = ($sum1+$sum2)*1.5/100;
+													$total = $jumlah+$ppn+$pph;
+												?>
+												<tr>
+													<td colspan="4"><b>Jumlah Rencana Anggaran Biaya</b></td>
+													<td>Rp. <?= number_format($jumlah,2,',','.');?></td>
+												</tr>
+												<tr>
+													<td colspan="4"><b>PPN 10%</b></td>
+													<td>Rp. <?= number_format($ppn,2,',','.');?></td>
+												</tr>
+												<tr>
+													<td colspan="4"><b>PPh 1,5%</b></td>
+													<td>Rp. <?= number_format($pph,2,',','.');?></td>
+												</tr>
+												<tr>
+													<td colspan="4"><b>Biaya Kegiatan</b></td>
+													<td>Rp. <?= number_format($total,2,',','.');?></td>
+												</tr>
+											</tbody>
+										</table>
 									</div>
 									<div class="tab-pane fade" id="hm" role="tabpanel" aria-labelledby="HM-tab">
-										Harga Material
+										<table class="table table-bordered">							
+											<thead class="thead-light">
+											<tr>
+												<th>No.</th>
+												<th>Uraian Bahan</th>
+												<th>Satuan</th>
+												<th>Harga Satuan</th>
+											</tr>
+											</thead>
+											<tbody>
+												<?php $no=1;foreach($harga_upah as $data){ ?>
+												<tr>
+													<td><?= $no++;?></td>
+													<td><?= $data['nama_upah'];?></td>
+													<td><?= $data['satuan'];?></td>
+													<td><?= $data['harga'];?></td>
+												</tr>
+												<?php } ?>
+											</tbody>
+										</table>
 									</div>
 									<div class="tab-pane fade" id="ahsp" role="tabpanel" aria-labelledby="ahsp-tab">
 										<table class="table table-bordered">							
-											<thead style="background:silver;">
+											<thead class="thead-light">
 											<tr>
 												<th>No.</th>
-												<th>Nama Pekerjaan</th>
+												<th>Uraian</th>
 												<th>Satuan</th>
 												<th>Koefisien</th>
 											</tr>
@@ -103,46 +184,55 @@
 										</table>
 									</div>
 									<div class="tab-pane fade" id="volume" role="tabpanel" aria-labelledby="volume-tab">
-										Volume
+										<table class="table table-bordered">							
+											<thead class="thead-light">
+											<tr>
+												<th>No.</th>
+												<th>Uraian Pekerjaan</th>
+												<th>Volume Pekerjaan</th>
+												<th>Satuan</th>
+											</tr>
+											</thead>
+											<tbody>
+												<?php $no=1;foreach($volume_pekerjaan as $data){ ?>
+												<tr>
+													<td><?= $no++;?></td>
+													<td><?= $data['nama_pekerjaan'];?></td>
+													<td><?= $data['volume'];?></td>
+													<td><?= $data['satuan'];?></td>
+												</tr>
+												<?php } ?>
+											</tbody>
+										</table>
 									</div>
 									<div class="tab-pane fade" id="boq" role="tabpanel" aria-labelledby="boq-tab">
 										<table id="boq-table" class="table table-bordered dt-responsive nowrap " style="border-collapse: collapse; border-spacing: 0; width: 100%;">
-											<thead style="background:silver;">
+											<thead class="thead-light">
 											<tr>
-												<th>No.</th>
-												<th>Nama Upah</th>
-												<th>BOQ</th>
-												<th>RAB</th>
+												<th colspan="2">Kebutuhan Upah</th>
 											</tr>
 											</thead>
 
 											<tbody>
 											<?php $no=1;foreach($boq_upah as $data){?>
 											<tr>
-												<td><?= $no++;?></td>
 												<td><?= $data['nama_upah'];?></td>
 												<td><?= $data['boq'];?></td>
-												<td><?= $data['rab'];?></td>
 											</tr>
 											<?php } ?>
 											</tbody>
 
 
-											<thead style="background:silver;">
+											<thead class="thead-light">
 											<tr>
-												<th>No.</th>
-												<th>Nama Material</th>
-												<th>BOQ</th>
-												<th>RAB</th>
+												<th colspan="2">Kebutuhan Material</th>
 											</tr>
 											</thead>
 											<tbody>
-											<?php $no=1;foreach($boq_material as $data){?>
+											<?php foreach($boq_material as $data){?>
 											<tr>
-												<td><?= $no++;?></td>
 												<td><?= $data['nama_material'];?></td>
 												<td><?= $data['boq'];?></td>
-												<td><?= $data['rab'];?></td>
 											</tr>
 											<?php } ?>
 											</tbody>
