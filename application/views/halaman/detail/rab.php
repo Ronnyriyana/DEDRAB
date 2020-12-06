@@ -75,6 +75,17 @@
 							<div class="card-body">
 								<div class="tab-content text-muted" id="myTabaltContent">
 									<div class="tab-pane fade in active show" id="rabt" role="tabpanel" aria-labelledby="rabt-tab">
+										<form action="<?= base_url('index.php/detail/rab/').$this->session->userdata('id_desain'); ?>" method="GET" enctype="multipart/form-data">
+											<div class="col-md-4">
+												<select onchange="this.form.submit()" name="kategori_harga" class="form-control" data-toggle="select2">
+													<option> - Select - </option>
+													<?php foreach($kategori_harga as $data){ ?>
+															<option value="<?= $data['id_kategori_harga'];?>"><?= $data['nama_kategori_harga'];?></option>
+													<?php } ?>
+												</select>
+											</div>
+											<div >&nbsp;</div>
+										</form>
 										<table class="table table-bordered">							
 											<thead class="thead-light">
 											<tr>

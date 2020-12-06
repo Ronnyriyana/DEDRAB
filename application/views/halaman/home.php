@@ -22,6 +22,7 @@
                         <?php } ?>
 					</select>
 				</div>
+				</form>
 			<!--isi-->	
 		</div>
 	</div>

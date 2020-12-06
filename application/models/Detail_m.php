@@ -2,6 +2,12 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Detail_m extends CI_Model {
+    public function GetKategoriHarga()
+	{
+        $data = $this->db->get("kategori_harga");
+		return $data->result_array();
+	}
+
     public function GetRabUpah($id_desain,$id_kategori_harga)
 	{
         $this->db->select("c.nama_upah,a.volume,c.satuan,d.harga,");

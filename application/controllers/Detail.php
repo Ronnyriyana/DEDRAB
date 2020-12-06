@@ -29,13 +29,14 @@ class Detail extends CI_Controller {
 		$this->template->F_Show("halaman/detail/ded",$data);  
     }
     
-    public function rab($id_desain,$id_kategori_harga = 1)
+    public function rab($id_desain)
 	{
-        /*if(isset($kategori_harga) == null){
-            $kategori_harga = 1 ;
-        }*/
+        $this->session->set_userdata(['id_desain' => $id_desain]);
+        $id_kategori_harga = 1;
+        if(null !== $this->input->get("kategori_harga")){ $id_kategori_harga = $this->input->get("kategori_harga"); }
         $data = array(
             "title_page" => "Detail RAB",
+            "kategori_harga" => $this->detail_m->GetKategoriHarga(),
             "rab_upah" => $this->detail_m->GetRabUpah($id_desain,$id_kategori_harga),
             "rab_material" => $this->detail_m->GetRabMaterial($id_desain,$id_kategori_harga),
             "harga_upah" => $this->detail_m->GetHargaUpah($id_desain,$id_kategori_harga),
