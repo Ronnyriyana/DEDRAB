@@ -1,9 +1,4 @@
 <link rel="stylesheet" href="https://printjs-4de6.kxcdn.com/print.min.css"/>
-<!-- Table datatable css -->
-<link href="<?= base_url(); ?>assets/libs/datatables/dataTables.bootstrap4.min.css" rel="stylesheet" type="text/css" />
-<link href="<?= base_url(); ?>assets/libs/datatables/buttons.bootstrap4.min.css" rel="stylesheet" type="text/css" />
-<link href="<?= base_url(); ?>assets/libs/datatables/responsive.bootstrap4.min.css" rel="stylesheet" type="text/css" />
-<link href="<?= base_url(); ?>assets/libs/datatables/select.bootstrap4.min.css" rel="stylesheet" type="text/css" />
 <!-- start page title -->
 <div class="row">
     <div class="col-12">
@@ -84,7 +79,7 @@
 													<?php } ?>
 												</select>
 											</div>
-											<div >&nbsp;</div>
+											<div class="clearifx">&nbsp;</div>
 										</form>
 										<table class="table table-bordered">							
 											<thead class="thead-light">
@@ -217,7 +212,7 @@
 										</table>
 									</div>
 									<div class="tab-pane fade" id="boq" role="tabpanel" aria-labelledby="boq-tab">
-										<table id="boq-table" class="table table-bordered dt-responsive nowrap " style="border-collapse: collapse; border-spacing: 0; width: 100%;">
+										<table id="boq-table" class="table table-bordered" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
 											<thead class="thead-light">
 											<tr>
 												<th colspan="2">Kebutuhan Upah</th>
@@ -260,28 +255,6 @@
 		</div>
 	</div>
 </div><!-- end row -->
-<!-- Datatable plugin js -->
-<script src="<?= base_url(); ?>assets/libs/datatables/jquery.dataTables.min.js" defer></script>
-<script src="<?= base_url(); ?>assets/libs/datatables/dataTables.bootstrap4.min.js" defer></script>
-
-<script src="<?= base_url(); ?>assets/libs/datatables/dataTables.responsive.min.js" defer></script>
-<script src="<?= base_url(); ?>assets/libs/datatables/responsive.bootstrap4.min.js" defer></script>
-
-<script src="<?= base_url(); ?>assets/libs/datatables/dataTables.buttons.min.js" defer></script>
-<script src="<?= base_url(); ?>assets/libs/datatables/buttons.bootstrap4.min.js" defer></script>
-
-<script src="<?= base_url(); ?>assets/libs/jszip/jszip.min.js" defer></script>
-<script src="<?= base_url(); ?>assets/libs/pdfmake/pdfmake.min.js" defer></script>
-<script src="<?= base_url(); ?>assets/libs/pdfmake/vfs_fonts.js" defer></script>
-
-<script src="<?= base_url(); ?>assets/libs/datatables/buttons.html5.min.js" defer></script>
-<script src="<?= base_url(); ?>assets/libs/datatables/buttons.print.min.js" defer></script>
-
-<script src="<?= base_url(); ?>assets/libs/datatables/dataTables.keyTable.min.js" defer></script>
-<script src="<?= base_url(); ?>assets/libs/datatables/dataTables.select.min.js" defer></script>
-
-<!-- Datatables init -->
-<script src="<?= base_url(); ?>assets/js/pages/datatables.init.js" defer></script>
 
 <script src="https://printjs-4de6.kxcdn.com/print.min.js"></script>
 <script>
