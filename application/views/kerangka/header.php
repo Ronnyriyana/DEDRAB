@@ -79,13 +79,13 @@
                 <ul class="navigation-menu">
 
                     <li class="has-submenu">
-                        <a href="#">
+                        <a href="<?= site_url('detail/rab/').$this->session->userdata("id_desain");?>">
                             <i class="mdi mdi-cash-usd-outline"></i>Harga Upah dan Material
                         </a>
                     </li>
                     
                     <li class="has-submenu">
-                        <a href="#">
+                        <a href="<?= site_url('detail/ded/').$this->session->userdata("id_desain");?>">
                             <i class="mdi mdi-account-supervisor-outline"></i>Analisis HSP
                         </a>
                     </li>

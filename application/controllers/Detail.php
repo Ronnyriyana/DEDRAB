@@ -6,6 +6,9 @@ class Detail extends CI_Controller {
 		parent::__construct();
         $this->load->library("template");
         $this->load->model("detail_m");
+        if(!$this->session->has_userdata('user_logged')){
+            redirect('home');
+        }
     }
     
 	public function index()
@@ -18,9 +21,7 @@ class Detail extends CI_Controller {
     
     public function ded($id_desain,$kategori_harga = 1)
 	{
-        /*if(isset($kategori_harga) == null){
-            $kategori_harga = 1 ;
-        }*/
+        $this->session->set_userdata("id_desain",$id_desain);
         $data = array(
             "title_page" => "Detail DED",
             "ded" => $this->detail_m->GetDed($id_desain),
@@ -31,7 +32,7 @@ class Detail extends CI_Controller {
     
     public function rab($id_desain)
 	{
-        $this->session->set_userdata(['id_desain' => $id_desain]);
+        $this->session->set_userdata("id_desain",$id_desain);
         $id_kategori_harga = 1;
         if(null !== $this->input->get("kategori_harga")){ $id_kategori_harga = $this->input->get("kategori_harga"); }
         $data = array(
