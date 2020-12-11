@@ -21,9 +21,12 @@ class Login_m extends CI_Model
             // jika password benar dan dia admin
             if($isPasswordTrue ){ 
                 // login sukses yay!
-                $this->session->set_userdata(['user_logged' => $akun]);
-                $this->session->set_userdata(['username' => $akun->username]);
-                $this->session->set_userdata(['level' => $akun->level]);
+                $data = array(
+                    'user_logged' => $akun,
+                    'username' => $akun->username,
+                    'level' => $akun->level
+                );
+                $this->session->set_userdata($data);
                 //$this->_updateLastLogin($user->user_id);
                 return true;
             }
