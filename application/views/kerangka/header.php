@@ -104,7 +104,7 @@
 </header>
 
 
-<div class="modal fade bs-example-modal-center" tabindex="-1" role="dialog" aria-labelledby="myCenterModalLabel" aria-hidden="true" style="display: none;">
+<div id="modalber" class="modal fade bs-example-modal-center" tabindex="-1" role="dialog" aria-labelledby="myCenterModalLabel" aria-hidden="true" style="display: none;">
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
             <div class="modal-header">
@@ -113,14 +113,15 @@
             </div>
             <div class="modal-body">
             <form action="<?= base_url('index.php/login');?>" method="POST" class="parsley-examples" data-parsley-validate novalidate>
+                <input type="hidden" name="redirect" id="redirect" value="<?= current_url();?>">
                 <div class="form-group">
 					<label for="userName">User Name<span class="text-danger">*</span></label>
 					<input type="text" name="username" parsley-trigger="change" required
-							placeholder="Enter user name" class="form-control" id="userName">
+							 class="form-control" id="userName">
 				</div>
 				<div class="form-group">
-					<label for="pass1">Password<span class="text-danger">*</span></label>
-					<input id="pass1" name="password" type="password" placeholder="Password" required
+					<label for="Password">Password<span class="text-danger">*</span></label>
+					<input id="Password" name="password" type="password" required
 							class="form-control">
 				</div>
 				<div class="form-group text-right mb-0">

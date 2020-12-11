@@ -57,8 +57,8 @@
                                     <a href="<?= site_url('detail/ded/').$data['id_desain']; ?>" type="button" class="btn btn-primary btn-rounded waves-effect waves-light" style="width:25%;">DED</a>
                                     <a href="<?= site_url('detail/rab/').$data['id_desain']; ?>" type="button" class="btn btn-primary btn-rounded waves-effect waves-light" style="width:25%;">RAB</a>
                                     <?php }else{?>
-                                    <a href="#" type="button" data-toggle="modal" data-target=".bs-example-modal-center" class="btn btn-primary btn-rounded waves-effect waves-light" style="width:25%;">DED</a>
-                                    <a href="#" type="button" data-toggle="modal" data-target=".bs-example-modal-center" class="btn btn-primary btn-rounded waves-effect waves-light" style="width:25%;">RAB</a>
+                                    <a href="#" id="detail" data-val="<?= site_url('detail/ded/').$data['id_desain']; ?>" type="button" data-toggle="modal" data-target=".bs-example-modal-center" class="btn btn-primary btn-rounded waves-effect waves-light" style="width:25%;">DED</a>
+                                    <a href="#" id="detail" data-val="<?= site_url('detail/rab/').$data['id_desain']; ?>" type="button" data-toggle="modal" data-target=".bs-example-modal-center" class="btn btn-primary btn-rounded waves-effect waves-light" style="width:25%;">RAB</a>
                                     <?php }?>
                                 </p>
                             </div>
@@ -73,3 +73,10 @@
     </div>
 </div>
 <!-- end row -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script defer>
+   $(document).on("click", "#detail", function () {
+     var link = $(this).data('val');
+     $('#redirect').val( link );
+});
+</script>
