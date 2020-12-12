@@ -38,6 +38,18 @@ class Detail_m extends CI_Model {
 		return $data->result_array();
     }
 
+    public function GetHargaMaterial($id_desain,$id_kategori_harga)
+	{
+        $this->db->select("DISTINCT(c.nama_material), c.satuan, d.harga");
+        $this->db->join("material_terpakai b","a.id_pekerjaan = b.id_pekerjaan");
+        $this->db->join("material c","b.id_material = c.id_material");
+        $this->db->join("harga_material d","c.id_material = d.id_material");
+        $this->db->where("a.id_desain",$id_desain);
+        $this->db->where("d.id_kategori_harga",$id_kategori_harga);
+        $data = $this->db->get("pekerjaan a");
+		return $data->result_array();
+    }
+
     public function GetHargaUpah($id_desain,$id_kategori_harga)
 	{
         $this->db->select("DISTINCT(c.nama_upah), c.satuan, d.harga");

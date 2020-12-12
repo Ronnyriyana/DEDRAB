@@ -33,13 +33,23 @@ class Detail extends CI_Controller {
     public function rab($id_desain)
 	{
         $this->session->set_userdata("id_desain",$id_desain);
-        $id_kategori_harga = 1;
-        if(null !== $this->input->get("kategori_harga")){ $id_kategori_harga = $this->input->get("kategori_harga"); }
+        if($this->session->has_userdata('id_kategori_harga')){
+            $id_kategori_harga = $_SESSION['id_kategori_harga'];
+        }else{
+            $id_kategori_harga = 1;
+        }
+        
+        if(null !== $this->input->get("kategori_harga")){ 
+            $id_kategori_harga = $this->input->get("kategori_harga"); 
+            $this->session->set_userdata("id_kategori_harga",$id_kategori_harga);
+        }
+
         $data = array(
             "title_page" => "Detail RAB",
             "kategori_harga" => $this->detail_m->GetKategoriHarga(),
             "rab_upah" => $this->detail_m->GetRabUpah($id_desain,$id_kategori_harga),
             "rab_material" => $this->detail_m->GetRabMaterial($id_desain,$id_kategori_harga),
+            "harga_material" => $this->detail_m->GetHargaMaterial($id_desain,$id_kategori_harga),
             "harga_upah" => $this->detail_m->GetHargaUpah($id_desain,$id_kategori_harga),
             "pekerjaan" => $this->detail_m->GetPekerjaan($id_desain),
             "volume_pekerjaan" => $this->detail_m->GetVolumePekerjaan($id_desain),

@@ -75,7 +75,7 @@
 												<select onchange="this.form.submit()" name="kategori_harga" class="form-control" data-toggle="select2">
 													<option> - Select - </option>
 													<?php foreach($kategori_harga as $data){ ?>
-															<option value="<?= $data['id_kategori_harga'];?>"><?= $data['nama_kategori_harga'];?></option>
+															<option value="<?= $data['id_kategori_harga'];?>" <?= ($data['id_kategori_harga'] == $this->session->userdata('id_kategori_harga') ? 'selected': '')?>><?= $data['nama_kategori_harga'];?></option>
 													<?php } ?>
 												</select>
 											</div>
@@ -146,6 +146,17 @@
 										</table>
 									</div>
 									<div class="tab-pane fade" id="hm" role="tabpanel" aria-labelledby="HM-tab">
+										<form action="<?= base_url('index.php/detail/rab/').$this->session->userdata('id_desain'); ?>" method="GET" enctype="multipart/form-data">
+											<div class="col-md-4">
+												<select onchange="this.form.submit()" name="kategori_harga" class="form-control" data-toggle="select2">
+													<option> - Select - </option>
+													<?php foreach($kategori_harga as $data){ ?>
+															<option value="<?= $data['id_kategori_harga'];?>" <?= ($data['id_kategori_harga'] == $this->session->userdata('id_kategori_harga') ? 'selected': '')?>><?= $data['nama_kategori_harga'];?></option>
+													<?php } ?>
+												</select>
+											</div>
+											<div class="clearifx">&nbsp;</div>
+										</form>
 										<table class="table table-bordered">							
 											<thead class="thead-light">
 											<tr>
@@ -156,12 +167,28 @@
 											</tr>
 											</thead>
 											<tbody>
+												<tr>
+													<td colspan="4"><b>Harga Material</b></td>
+												</tr>
+												<?php $no=1;foreach($harga_material as $data){ ?>
+												<tr>
+													<td><?= $no++;?></td>
+													<td><?= $data['nama_material'];?></td>
+													<td><?= $data['satuan'];?></td>
+													<td>Rp. <?= number_format($data['harga'],2,',','.');?></td>
+												</tr>
+												<?php } ?>
+											</tbody>
+											<tbody>
+												<tr>
+													<td colspan="4"><b>Harga Upah</b></td>
+												</tr>
 												<?php $no=1;foreach($harga_upah as $data){ ?>
 												<tr>
 													<td><?= $no++;?></td>
 													<td><?= $data['nama_upah'];?></td>
 													<td><?= $data['satuan'];?></td>
-													<td><?= $data['harga'];?></td>
+													<td>Rp. <?= number_format($data['harga'],2,',','.');?></td>
 												</tr>
 												<?php } ?>
 											</tbody>
