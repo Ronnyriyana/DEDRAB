@@ -11,6 +11,7 @@ application/logs/*
 composer.lock
 
 application/config/database.php
+application/config/config.php
 Template
 user_guide
 user_guide_src/build/*
