@@ -70,11 +70,12 @@
 							<div class="card-body">
 								<div class="tab-content text-muted" id="myTabaltContent">
 									<div class="tab-pane fade in active show" id="rabt" role="tabpanel" aria-labelledby="rabt-tab">
+									<h3 class="text-center">Racangan Anggaran Biaya <?= $_SESSION['nama_proyek'];?></h3>
 										<form action="<?= base_url('index.php/detail/rab/').$this->session->userdata('id_desain'); ?>" method="GET" enctype="multipart/form-data">
 											<div class="col-md-4">
 												<select onchange="this.form.submit()" name="kategori_harga" class="form-control" data-toggle="select2">
 													<option> - Select - </option>
-													<?php foreach($kategori_harga as $data){ ?>
+													<?php foreach($kategori_harga as $data){?>
 															<option value="<?= $data['id_kategori_harga'];?>" <?= ($data['id_kategori_harga'] == $this->session->userdata('id_kategori_harga') ? 'selected': '')?>><?= $data['nama_kategori_harga'];?></option>
 													<?php } ?>
 												</select>
@@ -146,6 +147,7 @@
 										</table>
 									</div>
 									<div class="tab-pane fade" id="hm" role="tabpanel" aria-labelledby="HM-tab">
+										<h3 class="text-center">Harga Upah & Material <?= $_SESSION['nama_proyek'];?></h3>
 										<form action="<?= base_url('index.php/detail/rab/').$this->session->userdata('id_desain'); ?>" method="GET" enctype="multipart/form-data">
 											<div class="col-md-4">
 												<select onchange="this.form.submit()" name="kategori_harga" class="form-control" data-toggle="select2">
@@ -195,6 +197,7 @@
 										</table>
 									</div>
 									<div class="tab-pane fade" id="ahsp" role="tabpanel" aria-labelledby="ahsp-tab">
+										<h3 class="text-center">Analisis Harga Satuan Pekerjaan <?= $_SESSION['nama_proyek'];?></h3>
 										<table class="table table-bordered">							
 											<thead class="thead-light">
 											<tr>
@@ -217,7 +220,8 @@
 										</table>
 									</div>
 									<div class="tab-pane fade" id="volume" role="tabpanel" aria-labelledby="volume-tab">
-										<table class="table table-bordered">							
+									<h3 class="text-center">Volume Pekerjaan <?= $_SESSION['nama_proyek'];?></h3>	
+									<table class="table table-bordered">							
 											<thead class="thead-light">
 											<tr>
 												<th>No.</th>
@@ -239,6 +243,7 @@
 										</table>
 									</div>
 									<div class="tab-pane fade" id="boq" role="tabpanel" aria-labelledby="boq-tab">
+										<h3 class="text-center">Build Of Quality <?= $_SESSION['nama_proyek'];?></h3>
 										<table id="boq-table" class="table table-bordered" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
 											<thead class="thead-light">
 											<tr>

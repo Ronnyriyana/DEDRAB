@@ -18,11 +18,11 @@ class Desain extends CI_Controller {
         if(null == $this->input->get("proyek")){ redirect("home"); }
         $proyek = $this->desain_m->GetNamaProyek($this->input->get("proyek"));
         foreach($proyek as $data){
-            $nama_proyek = $data['nama_proyek'];
+           $this->session->set_userdata("nama_proyek",$data['nama_proyek']);
         }
         $data = array(
             "title_page" => "Desain",
-            "proyek" => $nama_proyek,
+            "proyek" => $_SESSION['nama_proyek'],
             "desain" => $this->desain_m->GetDesain($this->input->get("proyek"))
         );
 		$this->template->F_Show("halaman/desain",$data);  
