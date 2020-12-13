@@ -1,6 +1,9 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
+use PhpOffice\PhpSpreadsheet\Spreadsheet;
+use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
+
 class Detail extends CI_Controller {
     public function __construct(){    
 		parent::__construct();
@@ -33,14 +36,12 @@ class Detail extends CI_Controller {
     public function rab($id_desain)
 	{
         $this->session->set_userdata("id_desain",$id_desain);
-        if($this->session->has_userdata('id_kategori_harga')){
-            $id_kategori_harga = $_SESSION['id_kategori_harga'];
-        }else{
-            $id_kategori_harga = 1;
-        }
-        
+
         if(null !== $this->input->get("kategori_harga")){ 
             $id_kategori_harga = $this->input->get("kategori_harga"); 
+            $this->session->set_userdata("id_kategori_harga",$id_kategori_harga);
+        }else{
+            $id_kategori_harga = 1;
             $this->session->set_userdata("id_kategori_harga",$id_kategori_harga);
         }
 
@@ -58,5 +59,71 @@ class Detail extends CI_Controller {
 			"id_desain" => $id_desain
         );
 		$this->template->F_Show("halaman/detail/rab",$data);  
-	}
+    }
+
+    function export()
+    {
+        $spreadsheet = new Spreadsheet();
+        $spreadsheet->getProperties()
+        ->setCreator("Dulurdesa.id")
+        ->setTitle("Export Data RAB");
+
+        $this->excel_rab($spreadsheet);
+
+        $object_writer = new Xlsx($spreadsheet);
+        header('Content-Type: application/vnd.ms-excel');
+        header('Content-Disposition: attachment;filename="Coba_export.xls"');
+        $object_writer->save('php://output');
+    }
+
+    private function excel_rab($spreadsheet){
+        $sheet = $spreadsheet->getActiveSheet();
+        $sheet->getColumnDimension("A","B","C","D","E")->setAutoSize(true);
+        $sheet->setTitle('RAB');//tab sheet excel
+        /*set column names*/
+        $table_columns = array("Uraian", "Volume", "Satuan", "Harga Satuan", "Jumlah");//nama kolom
+        $column = 1;
+        foreach ($table_columns as $field) {
+            $sheet->setCellValueByColumnAndRow($column, 1, $field);
+            $column++;
+        }
+
+        //judul rab upah
+        $sheet->mergeCells("A2:D2");
+        $sheet->setCellValueByColumnAndRow(1, 2, "Belanja Upah");
+
+        //data rab upah
+        $rab_upah = $this->detail_m->GetRabUpah($_SESSION['id_desain'],$_SESSION['id_kategori_harga']); //get your data from model
+        $excel_row = 3; //now from row 2
+        foreach ($rab_upah as $row) {
+            $sheet->setCellValueByColumnAndRow(1, $excel_row, $row['nama_upah']);
+            $sheet->setCellValueByColumnAndRow(2, $excel_row, $row['volume']);
+            $sheet->setCellValueByColumnAndRow(3, $excel_row, $row['satuan']);
+            $sheet->setCellValueByColumnAndRow(4, $excel_row, $row['harga']);
+            $sheet->setCellValueByColumnAndRow(5, $excel_row, $row['jumlah']);
+            $excel_row++;
+        }
+
+        //judul rab material
+        $excel_row++; 
+        $sheet->mergeCells("A".$excel_row.":D".$excel_row);
+        $sheet->setCellValueByColumnAndRow(1, $excel_row, "Belanja Material");
+
+        //data rab material
+        $rab_material = $this->detail_m->GetRabMaterial($_SESSION['id_desain'],$_SESSION['id_kategori_harga']); //get your data from model
+        $excel_row++; 
+        foreach ($rab_material as $row) {
+            $sheet->setCellValueByColumnAndRow(1, $excel_row, $row['nama_material']);
+            $sheet->setCellValueByColumnAndRow(2, $excel_row, $row['volume']);
+            $sheet->setCellValueByColumnAndRow(3, $excel_row, $row['satuan']);
+            $sheet->setCellValueByColumnAndRow(4, $excel_row, $row['harga']);
+            $sheet->setCellValueByColumnAndRow(5, $excel_row, $row['jumlah']);
+            $excel_row++;
+        }
+
+        $sheet->mergeCells("A".$excel_row.":D".$excel_row);
+        $sheet->setCellValueByColumnAndRow(1, $excel_row, "Jumlah Rencana Anggaran Biaya");
+
+    }
+
 }
