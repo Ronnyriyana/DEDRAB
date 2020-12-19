@@ -2,10 +2,10 @@
 <html lang="en">
     <head>
         <meta charset="utf-8" />
-        <title><?php echo isset ($title_page)?$title_page." | ":'' ?> | DED & RAB</title>
+        <title><?php echo isset ($title_page)?$title_page." | ":'' ?> | DulurDesa</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <meta content="Responsive bootstrap 4 admin template" name="description" />
-        <meta content="Coderthemes" name="author" />
+        <meta content="Aplikasi Web Rancanngan Anggaran Biaya" name="description" />
+        <meta content="Dulurdesa.id" name="author" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <!-- App favicon -->
         <link rel="shortcut icon" href="<?php echo base_url(); ?>assets/images/favicon.ico">
