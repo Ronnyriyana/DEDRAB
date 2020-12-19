@@ -67,13 +67,15 @@ class Detail extends CI_Controller {
         $spreadsheet = new Spreadsheet();
         $spreadsheet->getProperties()
         ->setCreator("Dulurdesa.id")
-        ->setTitle("Export Data RAB");
+        ->setTitle("Export Data RAB ".$_SESSION['nama_proyek']);
 
         $this->export->excel_rab($spreadsheet);
+        $this->export->excel_harga_upah_material($spreadsheet);
 
         $object_writer = new Xlsx($spreadsheet);
-        header('Content-Type: application/vnd.ms-excel');
-        header('Content-Disposition: attachment;filename="Coba_export.xls"');
+        //header('Content-Type: application/vnd.ms-excel');
+        header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
+        header('Content-Disposition: attachment;filename="Dulurdesa '.$_SESSION['nama_proyek'].'.Xlsx"');
         $object_writer->save('php://output');
     }
 
