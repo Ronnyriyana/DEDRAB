@@ -43,8 +43,22 @@ class Export{
                 return $styleArray = [
                     'borders' => [
                         'allBorders' => [
-                        'borderStyle' => \PhpOffice\PhpSpreadsheet\Style\Border::BORDER_THIN //fine border
-                      ]],
+                            'borderStyle' => \PhpOffice\PhpSpreadsheet\Style\Border::BORDER_THIN ] //fine border
+                    ],
+                ];
+                break;
+            case "rata_tengah":
+                return $styleArray = [
+                    'alignment' => [
+                        'horizontal' => \PhpOffice\PhpSpreadsheet\Style\Alignment::HORIZONTAL_CENTER,
+                    ]
+                ];
+                break;
+            case "uang":
+                return $styleArray = [
+                    'numberFormat' => [
+                        'formatCode' => \PhpOffice\PhpSpreadsheet\Style\NumberFormat::FORMAT_NUMBER_COMMA_SEPARATED2
+                    ]
                 ];
                 break;
             default:
@@ -63,8 +77,11 @@ class Export{
         $sheet->setCellValueByColumnAndRow(1, $excel_row, "Rancangan Anggaran Biaya");
         $sheet->getStyle("A".$excel_row.":E".$excel_row)->applyFromArray($this->style("title"));
 
-        $sheet->getDefaultColumnDimension()->setWidth(13);
-        $sheet->getColumnDimension("A","B","C","D","E")->setAutoSize(true);//Column auto width
+        //$sheet->getDefaultColumnDimension()->setWidth(1);
+        //$sheet->getColumnDimension("A","B","C","D","E")->setAutoSize(true);//Column auto width
+        foreach(range('A','E') as $columnID) {
+            $sheet->getColumnDimension($columnID)->setAutoSize(true);//Column auto width
+        }
         
         $excel_row = $excel_row + 2;
         $sheet->getStyle("A".$excel_row.":E".$excel_row)->applyFromArray($this->style("headerTable"));//header style
@@ -95,6 +112,7 @@ class Export{
             $jumlah+=$data['jumlah'];
             $excel_row++;
         }
+        $sheet->getStyle("B6:C".$excel_row)->getAlignment()->setHorizontal('center');
 
         //judul rab material
         $excel_row++; 
@@ -104,7 +122,7 @@ class Export{
 
         //data rab material
         $rab_material = $this->detail_m->GetRabMaterial($_SESSION['id_desain'],$_SESSION['id_kategori_harga']); //get your data from model
-        $excel_row++; 
+        $excel_row++; $Cell_rata=$excel_row;
         foreach ($rab_material as $data) {
             $sheet->setCellValueByColumnAndRow(1, $excel_row, $data['nama_material']);
             $sheet->setCellValueByColumnAndRow(2, $excel_row, $data['volume']);
@@ -114,6 +132,7 @@ class Export{
             $jumlah+=$data['jumlah'];
             $excel_row++;
         }
+        $sheet->getStyle("B".$Cell_rata.":C".$excel_row)->getAlignment()->setHorizontal('center');
         
         $untuk_bawah = $excel_row;
         $sheet->mergeCells("A".$excel_row.":D".$excel_row);
@@ -137,7 +156,8 @@ class Export{
         $sheet->getStyle("A".$untuk_bawah.":D".$excel_row)->applyFromArray($this->style("bold"));//bold style
 
         $sheet->getStyle("A4:E".$excel_row)->applyFromArray($this->style("satu_tabel"));//table style
-
+        //$sheet->getStyle('B','C')->getAlignment()->setHorizontal($this->style("rata_tengah"));
+        $sheet->getStyle("D6:E".$excel_row)->applyFromArray($this->style("uang"));
     }
 
     public function excel_harga_upah_material($spreadsheet){
@@ -163,25 +183,6 @@ class Export{
             $column++;
         }
 
-        //judul rab upah
-        $excel_row++;
-        $sheet->mergeCells("A".$excel_row.":D".$excel_row);
-        $sheet->setCellValueByColumnAndRow(1, $excel_row, "Harga Material");
-        $sheet->getStyle("A".$excel_row.":D".$excel_row)->applyFromArray($this->style("bold"));//header style
-
-        //data rab upah
-        $rab_upah = $this->detail_m->GetRabMaterial($_SESSION['id_desain'],$_SESSION['id_kategori_harga']); //get your data from model
-        $no = 1;
-        $excel_row++; //now from row 3
-        foreach ($rab_upah as $data) {
-            $sheet->setCellValueByColumnAndRow(1, $excel_row, $no);
-            $sheet->setCellValueByColumnAndRow(2, $excel_row, $data['nama_material']);
-            $sheet->setCellValueByColumnAndRow(3, $excel_row, $data['satuan']);
-            $sheet->setCellValueByColumnAndRow(4, $excel_row, $data['harga']);
-            $no++;
-            $excel_row++;
-        }
-
         //judul rab material
         $excel_row++; 
         $sheet->mergeCells("A".$excel_row.":D".$excel_row);
@@ -200,10 +201,110 @@ class Export{
             $no++;
             $excel_row++;
         }
+        $sheet->getStyle("A6:A".$excel_row)->getAlignment()->setHorizontal('center');
+
+        //judul rab upah
+        $excel_row++;
+        $sheet->mergeCells("A".$excel_row.":D".$excel_row);
+        $sheet->setCellValueByColumnAndRow(1, $excel_row, "Harga Material");
+        $sheet->getStyle("A".$excel_row.":D".$excel_row)->applyFromArray($this->style("bold"));//header style
+
+        //data rab upah
+        $rab_upah = $this->detail_m->GetRabMaterial($_SESSION['id_desain'],$_SESSION['id_kategori_harga']); //get your data from model
+        $no = 1;
+        $excel_row++; $Cell_rata=$excel_row;
+        foreach ($rab_upah as $data) {
+            $sheet->setCellValueByColumnAndRow(1, $excel_row, $no);
+            $sheet->setCellValueByColumnAndRow(2, $excel_row, $data['nama_material']);
+            $sheet->setCellValueByColumnAndRow(3, $excel_row, $data['satuan']);
+            $sheet->setCellValueByColumnAndRow(4, $excel_row, $data['harga']);
+            $no++;
+            $excel_row++;
+        }
+        $sheet->getStyle("A".$Cell_rata.":A".$excel_row)->getAlignment()->setHorizontal('center');
 
         $sheet->getStyle("A4:D".$excel_row)->applyFromArray($this->style("satu_tabel"));//tabel style
         $sheet->getDefaultColumnDimension()->setWidth(25);
-        $sheet->getColumnDimension("A","B","C","D")->setAutoSize(true);//Column auto width
+        //$sheet->getColumnDimension('D')->setWidth(12);
+        foreach(range('A','D') as $columnID) {
+            $sheet->getColumnDimension($columnID)->setAutoSize(true);//Column auto width
+        }
+       // $sheet->getStyle("C")->getAlignment()->setHorizontal($this->style("rata_tengah"));
+        $sheet->getStyle("C4:C".$excel_row)->getAlignment()->setHorizontal('center');
+        $sheet->getStyle("D6:D".$excel_row)->applyFromArray($this->style("uang"));
+    }
 
+    public function excel_ahsp($spreadsheet){
+        $spreadsheet->createSheet();
+        // Zero based, so set the second tab as active sheet
+        $spreadsheet->setActiveSheetIndex(2);
+        $sheet = $spreadsheet->getActiveSheet();
+        $sheet->setTitle('AHSP');//tab sheet excel
+
+        //judul atas
+        $excel_row = 2;
+        $sheet->mergeCells("A".$excel_row.":D".$excel_row);
+        $sheet->setCellValueByColumnAndRow(1, $excel_row, "Analisis Harga Satuan Pekerjaan");
+        $sheet->getStyle("A".$excel_row.":D".$excel_row)->applyFromArray($this->style("title"));
+        
+        $excel_row = $excel_row + 2;
+        $sheet->getStyle("A".$excel_row.":D".$excel_row)->applyFromArray($this->style("headerTable"));//header style
+        /*set column names*/
+        $table_columns = array("No.", "Uraian Bahan", "Satuan", "Koefisien");//nama kolom
+        $column = 1;
+        foreach ($table_columns as $field) {
+            $sheet->setCellValueByColumnAndRow($column, $excel_row, $field);
+            $column++;
+        }
+
+        //judul rab material
+        $excel_row++; 
+        $sheet->mergeCells("A".$excel_row.":D".$excel_row);
+        $sheet->setCellValueByColumnAndRow(1, $excel_row, "Belanja Upah");
+        $sheet->getStyle("B".$excel_row.":D".$excel_row)->applyFromArray($this->style("bold"));//header style
+
+        //data rab material
+        $rab_material = $this->detail_m->GetRabUpah($_SESSION['id_desain'],$_SESSION['id_kategori_harga']); //get your data from model
+        $no=1;
+        $excel_row++; 
+        foreach ($rab_material as $data) {
+            $sheet->setCellValueByColumnAndRow(1, $excel_row, $no);
+            $sheet->setCellValueByColumnAndRow(2, $excel_row, $data['nama_upah']);
+            $sheet->setCellValueByColumnAndRow(3, $excel_row, $data['satuan']);
+            $sheet->setCellValueByColumnAndRow(4, $excel_row, $data['harga']);
+            $no++;
+            $excel_row++;
+        }
+        $sheet->getStyle("A6:A".$excel_row)->getAlignment()->setHorizontal('center');
+
+        //judul rab upah
+        $excel_row++;
+        $sheet->mergeCells("A".$excel_row.":D".$excel_row);
+        $sheet->setCellValueByColumnAndRow(1, $excel_row, "Harga Material");
+        $sheet->getStyle("A".$excel_row.":D".$excel_row)->applyFromArray($this->style("bold"));//header style
+
+        //data rab upah
+        $rab_upah = $this->detail_m->GetRabMaterial($_SESSION['id_desain'],$_SESSION['id_kategori_harga']); //get your data from model
+        $no = 1;
+        $excel_row++; $Cell_rata=$excel_row;
+        foreach ($rab_upah as $data) {
+            $sheet->setCellValueByColumnAndRow(1, $excel_row, $no);
+            $sheet->setCellValueByColumnAndRow(2, $excel_row, $data['nama_material']);
+            $sheet->setCellValueByColumnAndRow(3, $excel_row, $data['satuan']);
+            $sheet->setCellValueByColumnAndRow(4, $excel_row, $data['harga']);
+            $no++;
+            $excel_row++;
+        }
+        $sheet->getStyle("A".$Cell_rata.":A".$excel_row)->getAlignment()->setHorizontal('center');
+
+        $sheet->getStyle("A4:D".$excel_row)->applyFromArray($this->style("satu_tabel"));//tabel style
+        $sheet->getDefaultColumnDimension()->setWidth(25);
+        //$sheet->getColumnDimension('D')->setWidth(12);
+        foreach(range('A','D') as $columnID) {
+            $sheet->getColumnDimension($columnID)->setAutoSize(true);//Column auto width
+        }
+       // $sheet->getStyle("C")->getAlignment()->setHorizontal($this->style("rata_tengah"));
+        $sheet->getStyle("C4:C".$excel_row)->getAlignment()->setHorizontal('center');
+        $sheet->getStyle("D6:D".$excel_row)->applyFromArray($this->style("uang"));
     }
 }

@@ -71,6 +71,7 @@ class Detail extends CI_Controller {
 
         $this->export->excel_rab($spreadsheet);
         $this->export->excel_harga_upah_material($spreadsheet);
+        $this->export->excel_ahsp($spreadsheet);
 
         $object_writer = new Xlsx($spreadsheet);
         //header('Content-Type: application/vnd.ms-excel');
