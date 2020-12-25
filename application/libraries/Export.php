@@ -224,7 +224,6 @@ class Export{
         $sheet->getStyle("A".$Cell_rata.":A".$excel_row)->getAlignment()->setHorizontal('center');
 
         $sheet->getStyle("A4:D".$excel_row)->applyFromArray($this->style("satu_tabel"));//tabel style
-        $sheet->getDefaultColumnDimension()->setWidth(25);
         //$sheet->getColumnDimension('D')->setWidth(12);
         foreach(range('A','D') as $columnID) {
             $sheet->getColumnDimension($columnID)->setAutoSize(true);//Column auto width
@@ -298,13 +297,98 @@ class Export{
         $sheet->getStyle("A".$Cell_rata.":A".$excel_row)->getAlignment()->setHorizontal('center');
 
         $sheet->getStyle("A4:D".$excel_row)->applyFromArray($this->style("satu_tabel"));//tabel style
-        $sheet->getDefaultColumnDimension()->setWidth(25);
-        //$sheet->getColumnDimension('D')->setWidth(12);
         foreach(range('A','D') as $columnID) {
             $sheet->getColumnDimension($columnID)->setAutoSize(true);//Column auto width
         }
        // $sheet->getStyle("C")->getAlignment()->setHorizontal($this->style("rata_tengah"));
         $sheet->getStyle("C4:C".$excel_row)->getAlignment()->setHorizontal('center');
         $sheet->getStyle("D6:D".$excel_row)->applyFromArray($this->style("uang"));
+    }
+
+    public function excel_volume_pekerjaan($spreadsheet){
+        $spreadsheet->createSheet();
+        // Zero based, so set the second tab as active sheet
+        $spreadsheet->setActiveSheetIndex(3);
+        $sheet = $spreadsheet->getActiveSheet();
+        $sheet->setTitle('Volume Pekerjaan');//tab sheet excel
+
+        //judul atas
+        $excel_row = 2;
+        $sheet->mergeCells("A".$excel_row.":D".$excel_row);
+        $sheet->setCellValueByColumnAndRow(1, $excel_row, "Volume Pekerjaan");
+        $sheet->getStyle("A".$excel_row.":D".$excel_row)->applyFromArray($this->style("title"));
+        
+        $excel_row = $excel_row + 2;
+        $sheet->getStyle("A".$excel_row.":D".$excel_row)->applyFromArray($this->style("headerTable"));//header style
+        /*set column names*/
+        $table_columns = array("No.", "Uraian Pekerjaan", "Volume Pekerjaan", "Satuan");//nama kolom
+        $column = 1;
+        foreach ($table_columns as $field) {
+            $sheet->setCellValueByColumnAndRow($column, $excel_row, $field);
+            $column++;
+        }
+
+        //data volume Pekerjaan
+        $rab_material = $this->detail_m->GetVolumePekerjaan($_SESSION['id_desain']); //get your data from model
+        $no=1;
+        $excel_row++; 
+        foreach ($rab_material as $data) {
+            $sheet->setCellValueByColumnAndRow(1, $excel_row, $no);
+            $sheet->setCellValueByColumnAndRow(2, $excel_row, $data['nama_pekerjaan']);
+            $sheet->setCellValueByColumnAndRow(3, $excel_row, $data['volume']);
+            $sheet->setCellValueByColumnAndRow(4, $excel_row, $data['satuan']);
+            $no++;
+            $excel_row++;
+        }
+        $sheet->getStyle("A5:A".$excel_row)->getAlignment()->setHorizontal('center');
+
+        $sheet->getStyle("A4:D".$excel_row)->applyFromArray($this->style("satu_tabel"));//tabel style
+        foreach(range('A','D') as $columnID) {
+            $sheet->getColumnDimension($columnID)->setAutoSize(true);//Column auto width
+        }
+    }
+
+    public function excel_boq($spreadsheet){
+        $spreadsheet->createSheet();
+        // Zero based, so set the second tab as active sheet
+        $spreadsheet->setActiveSheetIndex(4);
+        $sheet = $spreadsheet->getActiveSheet();
+        $sheet->setTitle('Build Of Quantity');//tab sheet excel
+
+        //judul atas
+        $excel_row = 2;
+        $sheet->mergeCells("A".$excel_row.":B".$excel_row);
+        $sheet->setCellValueByColumnAndRow(1, $excel_row, "Build Of Quantity");
+        $sheet->getStyle("A".$excel_row.":B".$excel_row)->applyFromArray($this->style("title"));
+        
+        $excel_row = $excel_row + 2;
+        $sheet->mergeCells("A".$excel_row.":B".$excel_row);
+        $sheet->setCellValueByColumnAndRow(1, $excel_row, "Kebutuhan Upah");
+        $sheet->getStyle("A".$excel_row)->applyFromArray($this->style("headerTable"));//header style
+        //data boq upah
+        $rab_material = $this->detail_m->GetBOQ_upah($_SESSION['id_desain'],$_SESSION['id_kategori_harga']); //get your data from model
+        $excel_row++; 
+        foreach ($rab_material as $data) {
+            $sheet->setCellValueByColumnAndRow(1, $excel_row, $data['nama_upah']);
+            $sheet->setCellValueByColumnAndRow(2, $excel_row, $data['boq']);
+            $excel_row++;
+        }
+
+        $sheet->mergeCells("A".$excel_row.":B".$excel_row);
+        $sheet->setCellValueByColumnAndRow(1, $excel_row, "Kebutuhan Material");
+        $sheet->getStyle("A".$excel_row)->applyFromArray($this->style("headerTable"));//header style
+        //data boq
+        $rab_material = $this->detail_m->GetBOQ_material($_SESSION['id_desain'],$_SESSION['id_kategori_harga']); //get your data from model
+        $excel_row++; 
+        foreach ($rab_material as $data) {
+            $sheet->setCellValueByColumnAndRow(1, $excel_row, $data['nama_material']);
+            $sheet->setCellValueByColumnAndRow(2, $excel_row, $data['boq']);
+            $excel_row++;
+        }
+
+        $sheet->getStyle("A4:B".$excel_row)->applyFromArray($this->style("satu_tabel"));//tabel style
+        foreach(range('A','D') as $columnID) {
+            $sheet->getColumnDimension($columnID)->setAutoSize(true);//Column auto width
+        }
     }
 }
