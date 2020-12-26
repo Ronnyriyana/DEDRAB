@@ -391,4 +391,35 @@ class Export{
             $sheet->getColumnDimension($columnID)->setAutoSize(true);//Column auto width
         }
     }
+
+    public function excel_ded($spreadsheet){
+        $spreadsheet->createSheet();
+        // Zero based, so set the second tab as active sheet
+        $spreadsheet->setActiveSheetIndex(5);
+        $sheet = $spreadsheet->getActiveSheet();
+        $sheet->setTitle('DED');//tab sheet excel
+
+        //judul atas
+        $excel_row = 2;
+        $sheet->mergeCells("A".$excel_row.":J".$excel_row);
+        $sheet->setCellValueByColumnAndRow(1, $excel_row, "DED");
+        $sheet->getStyle("A".$excel_row.":J".$excel_row)->applyFromArray($this->style("title"));
+        
+        $excel_row = $excel_row + 2;
+        //data boq upah
+        $ded = $this->detail_m->GetDed($_SESSION['id_desain']); //get your data from model
+        foreach ($ded as $data) {
+            $this->addImage($data['foto'], 'A'.$excel_row, $spreadsheet->getActiveSheet(5));
+            $excel_row = $excel_row + 22;
+        }
+    }
+
+    function addImage($name,$coordinates,$worksheet){
+        $drawing = new \PhpOffice\PhpSpreadsheet\Worksheet\Drawing();
+        $drawing->setName($name);
+        $drawing->setPath('assets/images/ded/'.$name);
+        $drawing->setCoordinates($coordinates);
+        $drawing->setHeight(400);
+        $drawing->setWorksheet($worksheet);
+    }
 }
