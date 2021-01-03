@@ -4,8 +4,8 @@
 	
 		<li class="dropdown notification-list">
 			<a class="nav-link dropdown-toggle nav-user mr-0 waves-effect waves-light" data-toggle="dropdown" href="#" role="button" aria-haspopup="false" aria-expanded="false">
-				<img src="<?= base_url(); ?>assets/dashboard/images/users/avatar-1.jpg" alt="user-image" class="rounded-circle">
-				<span class="d-none d-sm-inline-block ml-1 font-weight-medium">Alex M.</span>
+				<img src="<?php echo base_url(); ?>assets/images/users/profile.png" alt="user-image" class="rounded-circle">
+				<span class="d-none d-sm-inline-block ml-1 font-weight-medium"><?= $this->session->userdata('username'); ?></span>
 				<i class="mdi mdi-chevron-down d-none d-sm-inline-block"></i>
 			</a>
 			<div class="dropdown-menu dropdown-menu-right profile-dropdown ">
@@ -29,23 +29,19 @@
 	<div class="logo-box">
 		<a href="index.html" class="logo text-center logo-dark">
 			<span class="logo-lg">
-				<img src="<?= base_url(); ?>assets/dashboard/images/logo.png" alt="" height="22">
-				<!-- <span class="logo-lg-text-dark">Uplon</span> -->
+				<span class="logo-lg-text-dark">Dashboard</span>
 			</span>
 			<span class="logo-sm">
-				<!-- <span class="logo-lg-text-dark">U</span> -->
-				<img src="<?= base_url(); ?>assets/dashboard/images/logo-sm.png" alt="" height="24">
+				<span class="logo-lg-text-dark">D</span>
 			</span>
 		</a>
 
 		<a href="index.html" class="logo text-center logo-light">
 			<span class="logo-lg">
-				<img src="<?= base_url(); ?>assets/dashboard/images/logo-light.png" alt="" height="22">
-				<!-- <span class="logo-lg-text-dark">Uplon</span> -->
+				<span class="logo-lg-text-dark">Dashboard</span>
 			</span>
 			<span class="logo-sm">
-				<!-- <span class="logo-lg-text-dark">U</span> -->
-				<img src="<?= base_url(); ?>assets/dashboard/images/logo-sm-light.png" alt="" height="24">
+				<span class="logo-lg-text-dark">D</span>
 			</span>
 		</a>
 	</div>
