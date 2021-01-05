@@ -2,7 +2,7 @@
 <html lang="en">
     <head>
         <meta charset="utf-8" />
-        <title>Starter Page | Uplon - Responsive Bootstrap 4 Admin Dashboard</title>
+        <title>Dashboard | <?= isset ($title_page)?$title_page:'DulurDesa' ?></title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta content="Responsive bootstrap 4 admin template" name="description" />
         <meta content="Coderthemes" name="author" />
