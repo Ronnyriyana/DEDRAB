@@ -2,7 +2,7 @@
 <html lang="en">
     <head>
         <meta charset="utf-8" />
-        <title><?php echo isset ($title_page)?$title_page." | ":'' ?> | DulurDesa</title>
+        <title><?php echo isset ($title_page)?$title_page:'DulurDesa' ?> | DulurDesa</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta content="Aplikasi Web Rancanngan Anggaran Biaya" name="description" />
         <meta content="Dulurdesa.id" name="author" />
