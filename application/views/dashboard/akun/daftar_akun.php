@@ -46,11 +46,9 @@
                                 <i class="mdi mdi-chevron-left"></i> <i class="mdi mdi-tools"></i>
                             </button>
                             <div class="dropdown-menu">
-                                <a class="dropdown-item" href="#">Action</a>
-                                <a class="dropdown-item" href="#">Another action</a>
-                                <a class="dropdown-item" href="#">Something else here</a>
+                                <a class="dropdown-item" href="#"><span class="mdi mdi-textbox-password"> Ganti Password</span></a>
                                 <div class="dropdown-divider"></div>
-                                <a class="dropdown-item" href="#">Separated link</a>
+                                <a class="dropdown-item" href="#"><span class="mdi mdi-delete"> Hapus</span></a>
                             </div>
                         </div>
                     </td>
