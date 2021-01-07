@@ -19,7 +19,7 @@
 <link href="<?= base_url();?>assets/libs/datatables/responsive.bootstrap4.min.css" rel="stylesheet" type="text/css" />
 <link href="<?= base_url();?>assets/libs/datatables/select.bootstrap4.min.css" rel="stylesheet" type="text/css" />
 <div class="row">
-    <div class="col-9">
+    <div class="col-8">
         <div class="card-box">
             <a href="#" type="button" class="btn btn-info waves-effect waves-light"><span class="btn-label"><i class="mdi mdi-account-plus"></i></span>Tambah Akun</a>
             <p class="sub-header"> </p>

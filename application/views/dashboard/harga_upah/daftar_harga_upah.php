@@ -19,7 +19,7 @@
 <link href="<?= base_url();?>assets/libs/datatables/responsive.bootstrap4.min.css" rel="stylesheet" type="text/css" />
 <link href="<?= base_url();?>assets/libs/datatables/select.bootstrap4.min.css" rel="stylesheet" type="text/css" />
 <div class="row">
-    <div class="col-8">
+    <div class="col-9">
         <div class="card-box">
             <div class="row">
                 <div class="col-4">
