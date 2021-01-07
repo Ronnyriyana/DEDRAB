@@ -6,6 +6,9 @@ class Dashboard_akun extends CI_Controller {
 		parent::__construct();
         $this->load->library("template");
         $this->load->model("dashboard_akun_m","A");
+        if(!$this->session->has_userdata('user_logged')){
+            redirect('home');
+        }
     }
     
 	public function index(){
