@@ -19,15 +19,14 @@ class Dashboard_akun extends CI_Controller {
         $this->template->B_Show("dashboard/akun/daftar_akun",$data);
     }
     
-    public function edit(){
+    public function tambahAkun(){
         $data = $this->input->post(null, true);
-        
-        $query = $this->A->editAkun($data);
+        $query = $this->A->inputAkun($data);
         if($query){
-            $this->session->set_flashdata('notif','<div class="alert alert-success" role="alert"> Data Berhasil diubah <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>');
+            $this->session->set_flashdata("berhasil","Data berhasil ditambahkan.");
             redirect('Dashboard_akun');
 		}else{
-			$this->session->set_flashdata('notif','<div class="alert alert-success" role="alert"> Data gagal diubah <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>');
+			$this->session->set_flashdata("gagal","Data tidak ditambahkan.");
             redirect('Dashboard_akun');
 		}
     }
