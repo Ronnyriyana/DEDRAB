@@ -30,4 +30,18 @@ class Dashboard_akun extends CI_Controller {
             redirect('Dashboard_akun');
 		}
     }
+
+    public function ajax_edit($id)
+    {
+        $data = $this->A->get_by_id($id);
+        echo json_encode($data);
+    }
+
+    public function ajax_update()
+    {
+        $data = $this->input->post(null, true);
+        $this->person->update($data);
+        echo json_encode(array("status" => TRUE));
+    }
+    
 }

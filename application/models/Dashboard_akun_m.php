@@ -14,5 +14,19 @@ class Dashboard_akun_m extends CI_Model {
         $data['level'] = "kuwu";
 		$res = $this->db->insert("akun",$data);
 		return $res;
-	}
+    }
+    
+    public function get_by_id($id)
+    {
+        $this->db->where("id_akun",$id);
+        $query = $this->db->get("akun");
+ 
+        return $query->row();
+    }
+
+    public function update($data)
+    {
+        $this->db->update("akun", $data, $data['id_akun']);
+        return $this->db->affected_rows();
+    }
 }

@@ -48,7 +48,7 @@
                                 <i class="mdi mdi-chevron-left"></i> <i class="mdi mdi-tools"></i>
                             </button>
                             <div class="dropdown-menu">
-                                <a class="dropdown-item" href="#"><span class="mdi mdi-textbox-password"> Ganti Password</span></a>
+                                <a class="dropdown-item" href="#" onclick="edit_person(<?= $data['id_akun'];?>);"><span class="mdi mdi-textbox-password"> Ganti Password</span></a>
                                 <div class="dropdown-divider"></div>
                                 <a class="dropdown-item" href="#"><span class="mdi mdi-delete"> Hapus</span></a>
                             </div>
@@ -73,7 +73,7 @@
 <!-- Datatables init -->
 <script src="<?= base_url();?>assets/js/pages/datatables.init.js" defer></script>
 
-<div id="modalber" class="modal fade tambahAkun" tabindex="-1" role="dialog" aria-labelledby="myCenterModalLabel" aria-hidden="true" style="display: none;">
+<div id="tambahAkun" class="modal fade tambahAkun" tabindex="-1" role="dialog" aria-labelledby="myCenterModalLabel" aria-hidden="true" style="display: none;">
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
             <div class="modal-header">
@@ -119,7 +119,7 @@
 
 <!-- Sweet Alerts js -->
 <script src="<?= base_url();?>assets/libs/sweetalert2/sweetalert2.min.js"></script>
-<script>
+<script defer>
 	//swal berhasil
 	<?php if($this->session->flashdata('berhasil')){ ?>
         Swal.fire({title:"Good job!",text:"You clicked the button!",type:"success",confirmButtonColor:"#348cd4"})
@@ -129,7 +129,82 @@
 	<?php if($this->session->flashdata('gagal')){ ?>
 	    Swal.fire({title:"Bad",text:"You clicked the button!",type:"error",confirmButtonColor:"#348cd4"})
 	<?php } ?>
+
+   
 </script>
+
+<script>
+        function edit_person(id)
+    {
+        $('#formEdit')[0].reset(); // reset form on modals
+        //$('.form-group').removeClass('has-error'); // clear error class
+        //$('.help-block').empty(); // clear error string
+    
+        //Ajax Load data from ajax
+        $.ajax({
+            url : "<?php echo site_url('dashboard_akun/ajax_edit/')?>/" + id,
+            type: "GET",
+            dataType: "JSON",
+            success: function(data)
+            {
+    
+                $('[name="id_akun"]').val(data.id_akun);
+                $('[name="username"]').val(data.username);
+                $('#editAkun').modal('show'); // show bootstrap modal when complete loaded
+    
+            },
+            error: function (jqXHR, textStatus, errorThrown)
+            {
+                alert('Error get data from ajax');
+            }
+        });
+    }
+</script>
+
+<div id="editAkun" class="modal fade editAkun" tabindex="-1" role="dialog" aria-labelledby="myCenterModalLabel" aria-hidden="true" style="display: none;">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="myCenterModalLabel"><i class="mdi mdi-account-edit "></i> Rubah Password Akun</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+            </div>
+            <div class="modal-body">
+            <form id="formEdit" action="<?= site_url('dashboard_akun/editAkun');?>" method="POST" class="parsley-examples" data-parsley-validate novalidate>
+            <input type="hidden" name="id_akun" value="">
+            <fieldset disabled>
+            <div class="form-group">
+                <label for="userName">User Name<span class="text-danger">*</span></label>
+                <input type="text" name="username" parsley-trigger="change" placeholder="Enter user name" class="form-control" id="userName">
+            </div>
+            <div class="form-group">
+                <label for="disabledSelect">Level Akun</label>
+                <select id="disabledSelect" class="form-control">
+                    <option>Kuwu</option>
+                </select>
+            </div>
+            </fieldset>
+            <div class="form-group">
+                <label for="pass1">Password Baru<span class="text-danger">*</span></label>
+                <input id="pass1" type="password" name="password" placeholder="Password" required class="form-control">
+            </div>
+            <div class="form-group">
+                <label for="passWord2">Confirm Password <span class="text-danger">*</span></label>
+                <input data-parsley-equalto="#pass1" type="password" required placeholder="Password" class="form-control" id="passWord2">
+            </div>
+
+            <div class="form-group text-right mb-0">
+                <button class="btn btn-primary waves-effect waves-light mr-1" type="submit">
+                    Submit
+                </button>
+                <button data-dismiss="modal" class="btn btn-secondary waves-effect">
+                    Cancel
+                </button>
+            </div>
+			</form>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
 
 <!-- Plugin js-->
 <script src="<?= base_url();?>assets/libs/parsleyjs/parsley.min.js" defer></script>
